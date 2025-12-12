@@ -34,97 +34,55 @@ export default function Home() {
 
   return (
     <div>
-      {/* Hero Section with Illustration */}
+      {/* Combined Hero and Upload Section */}
       <section
         style={{
-          padding: "40px 24px 80px",
-          background: `linear-gradient(135deg, rgba(91, 140, 219, 0.05) 0%, rgba(124, 141, 181, 0.05) 100%), url('/bg-wavy.png')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          padding: "80px 24px 120px",
+          background: `linear-gradient(135deg, rgba(91, 140, 219, 0.05) 0%, rgba(124, 141, 181, 0.05) 100%)`,
+          minHeight: "80vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
         }}
       >
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-              gap: "64px",
-              alignItems: "center",
-            }}
-          >
-            {/* Left side - Text */}
-            <div>
-              <h1
-                style={{
-                  fontSize: "56px",
-                  fontWeight: 700,
-                  marginBottom: "24px",
-                  lineHeight: 1.1,
-                }}
-              >
-                Is This Photo or Video <span className="text-gradient">Real?</span>
-              </h1>
+        <div style={{ maxWidth: "800px", width: "100%", margin: "0 auto", textAlign: "center" }}>
+          
+          {/* Condensed Hero Text */}
+          <div style={{ marginBottom: "48px" }}>
+            <h1
+              style={{
+                fontSize: "64px",
+                fontWeight: 700,
+                marginBottom: "24px",
+                lineHeight: 1.1,
+                letterSpacing: "-0.02em",
+              }}
+            >
+              Is this <span className="text-gradient">real</span> or <span className="text-gradient">AI</span>?
+            </h1>
 
-              <p
-                style={{
-                  fontSize: "22px",
-                  color: "var(--gray-600)",
-                  marginBottom: "32px",
-                  lineHeight: 1.6,
-                }}
-              >
-                AuthentiKa helps elderly communities detect AI-generated content and stay safe from fake images. Upload any photo or video to check if it's authentic.
-              </p>
-
-              <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <Link href="#upload" className="btn-primary">
-                  Check an Image Now
-                </Link>
-                <Link href="/learn" className="btn-secondary">
-                  Learn How It Works
-                </Link>
-              </div>
-            </div>
-
-            {/* Right side - Hero Illustration */}
-            <div style={{ position: "relative" }}>
-              <Image
-                src="/hero.svg"
-                alt="AuthentiKa Hero"
-                width={600}
-                height={500}
-                style={{ width: "100%", height: "auto" }}
-              />
-            </div>
+            <p
+              style={{
+                fontSize: "24px",
+                color: "var(--gray-600)",
+                maxWidth: "600px",
+                margin: "0 auto",
+                lineHeight: 1.6,
+              }}
+            >
+              Simple tools to help you stay safe online. Just upload a photo to check if it is real.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* Upload Section with ID anchor */}
-      <section id="upload" className="section-padding" style={{ background: "var(--background)" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto", textAlign: "center" }}>
+          {/* Upload Card - Moved up and centered */}
           <div
             className="glass-card"
             style={{
               padding: "48px",
+              boxShadow: "0 20px 40px rgba(0,0,0,0.08)",
             }}
           >
-            <div style={{ marginBottom: "32px" }}>
-              <Image
-                src="/verified.svg"
-                alt="Verified"
-                width={80}
-                height={80}
-                style={{ margin: "0 auto 16px" }}
-              />
-              <h2 style={{ fontSize: "32px", marginBottom: "12px" }}>
-                Upload & Verify Your Image
-              </h2>
-              <p style={{ fontSize: "18px", color: "var(--gray-600)" }}>
-                Get instant results - we'll tell you if it's real or AI-generated
-              </p>
-            </div>
-
             {!previewUrl ? (
               <div>
                 <label
@@ -133,14 +91,15 @@ export default function Home() {
                   style={{
                     display: "block",
                     cursor: "pointer",
+                    background: "white",
                   }}
                 >
                   <Upload size={64} style={{ margin: "0 auto 16px", color: "var(--primary)" }} />
-                  <p style={{ fontSize: "20px", fontWeight: 500, marginBottom: "8px" }}>
-                    Click to Upload Photo or Video
+                  <p style={{ fontSize: "22px", fontWeight: 600, marginBottom: "8px", color: "var(--primary)" }}>
+                    Tap here to Check a Photo
                   </p>
-                  <p style={{ fontSize: "16px", color: "var(--gray-500)" }}>
-                    We'll check if it's AI-generated
+                  <p style={{ fontSize: "18px", color: "var(--gray-500)" }}>
+                    We&apos;ll tell you if it&apos;s real or not
                   </p>
                 </label>
                 <input
@@ -179,9 +138,9 @@ export default function Home() {
                   <button
                     onClick={handleVerify}
                     className="btn-primary"
-                    style={{ width: "100%", marginBottom: "16px" }}
+                    style={{ width: "100%", marginBottom: "16px", fontSize: "20px" }}
                   >
-                    Check if AI-Generated
+                    Check if Real
                   </button>
                 )}
 
@@ -198,7 +157,7 @@ export default function Home() {
                       <Shield size={48} style={{ margin: "0 auto", color: "var(--primary)" }} />
                     </div>
                     <p style={{ fontSize: "20px", fontWeight: 500 }}>
-                      Analyzing your image...
+                      Checking...
                     </p>
                   </div>
                 )}
@@ -214,10 +173,10 @@ export default function Home() {
                   >
                     <CheckCircle2 size={64} style={{ margin: "0 auto 16px", color: "var(--success)" }} />
                     <h3 style={{ fontSize: "24px", marginBottom: "12px", color: "var(--success)" }}>
-                      Appears to be Real
+                      It&apos;s Authentic!
                     </h3>
                     <p style={{ fontSize: "18px", color: "var(--gray-600)" }}>
-                      Our analysis suggests this image is authentic and not AI-generated.
+                      Good news! This photo looks real.
                     </p>
                   </div>
                 )}
@@ -233,10 +192,10 @@ export default function Home() {
                   >
                     <AlertCircle size={64} style={{ margin: "0 auto 16px", color: "var(--warning)" }} />
                     <h3 style={{ fontSize: "24px", marginBottom: "12px", color: "var(--warning)" }}>
-                      Likely AI-Generated
+                      Be Careful
                     </h3>
                     <p style={{ fontSize: "18px", color: "var(--gray-600)" }}>
-                      This image shows signs of being created or modified by artificial intelligence. Be cautious about sharing or believing it.
+                      This might be fake or AI-created. Don&apos;t trust it immediately.
                     </p>
                   </div>
                 )}
@@ -250,7 +209,7 @@ export default function Home() {
                   className="btn-secondary"
                   style={{ width: "100%" }}
                 >
-                  Check Another Image
+                  Check Another Photo
                 </button>
               </div>
             )}

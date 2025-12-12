@@ -81,7 +81,7 @@ export default function Footer() {
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
                 <MessageCircle size={20} />
-                <span>We're here to help</span>
+                <span>We&apos;re here to help</span>
               </div>
             </div>
           </div>

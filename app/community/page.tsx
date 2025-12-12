@@ -34,18 +34,21 @@ export default function CommunityPage() {
 
   return (
     <div>
-      {/* Hero Section with Image Background */}
+      {/* Hero Section with Gradient and Logo */}
       <section
         style={{
           padding: "80px 24px",
           textAlign: "center",
-          background: `linear-gradient(rgba(9, 87, 177, 0.9), rgba(87, 210, 225, 0.9)), url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: "linear-gradient(135deg, #57d2e1 0%, #0957b1 100%)",
           color: "white",
         }}
       >
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <img 
+            src="/authentika_logo_white.svg" 
+            alt="Authentika Logo" 
+            style={{ width: "150px", marginBottom: "32px", height: "auto" }} 
+          />
           <h1 style={{ fontSize: "52px", marginBottom: "24px", color: "white" }}>
             Join Our <span style={{ opacity: 0.95 }}>Community</span>
           </h1>
@@ -313,7 +316,7 @@ export default function CommunityPage() {
                     border: "3px solid var(--primary)",
                   }}
                 />
-                <div style={{ fontSize: "48px", marginBottom: "16px", opacity: 0.3, color: "var(--primary)" }}>"</div>
+                <div style={{ fontSize: "48px", marginBottom: "16px", opacity: 0.3, color: "var(--primary)" }}>&quot;</div>
                 <p
                   style={{
                     fontSize: "17px",
