@@ -1,275 +1,319 @@
 import Link from "next/link";
+import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
 
 export default function CommunityPage() {
   const upcomingEvents = [
     {
-      title: "AI Safety Workshop for Beginners",
+      title: "Learn to Spot AI Photos",
       date: "December 15, 2025",
-      time: "2:00 PM - 3:30 PM",
-      type: "Virtual",
-      spots: "28 spots left",
-    },
-    {
-      title: "Protecting Your Photos Online",
-      date: "December 18, 2025",
-      time: "10:00 AM - 11:00 AM",
-      type: "Virtual",
-      spots: "42 spots left",
-    },
-    {
-      title: "Monthly Community Meetup",
-      date: "December 20, 2025",
-      time: "3:00 PM - 4:30 PM",
+      time: "2:00 PM",
+      location: "Community Center",
       type: "In-Person",
-      spots: "15 spots left",
-    },
-  ];
-
-  const discussions = [
-    {
-      title: "How do I remove location from iPhone photos?",
-      author: "Margaret T.",
-      replies: 23,
-      lastActive: "2 hours ago",
+      description: "Hands-on workshop where you'll learn to identify AI-generated images and protect yourself from fake content.",
+      image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80",
     },
     {
-      title: "Is it safe to use AI photo editors?",
-      author: "Robert M.",
-      replies: 45,
-      lastActive: "5 hours ago",
+      title: "AI Detection for Beginners",
+      date: "December 18, 2025",
+      time: "10:00 AM",
+      location: "Online Meeting",
+      type: "Virtual",
+      description: "Join from home to learn the basics of detecting AI-generated photos and videos. No tech experience needed.",
+      image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
     },
     {
-      title: "Tips for talking to grandchildren about online safety",
-      author: "Dorothy L.",
-      replies: 67,
-      lastActive: "1 day ago",
-    },
-    {
-      title: "Facebook privacy settings guide - step by step",
-      author: "William H.",
-      replies: 89,
-      lastActive: "2 days ago",
-    },
-  ];
-
-  const successStories = [
-    {
-      quote: "I finally understand why my grandson was worried about my Facebook photos. Now I know how to protect our family memories!",
-      author: "Eleanor, 72",
-      location: "Chicago, IL",
-    },
-    {
-      quote: "The community workshops gave me confidence to use technology without fear. I even help my friends now!",
-      author: "James, 68",
-      location: "Austin, TX",
-    },
-    {
-      quote: "Learning about AI was intimidating at first, but WiseGuard made it simple. My digital life is much safer now.",
-      author: "Patricia, 75",
-      location: "Seattle, WA",
+      title: "Coffee & Discussion Group",
+      date: "December 20, 2025",
+      time: "3:00 PM",
+      location: "Local Library",
+      type: "In-Person",
+      description: "Casual meetup to share experiences, ask questions, and learn from others about staying safe from AI scams.",
+      image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80",
     },
   ];
 
   return (
     <div>
-      {/* Hero Section */}
+      {/* Hero Section with Image Background */}
       <section
         style={{
-          padding: "80px 24px 60px",
+          padding: "80px 24px",
           textAlign: "center",
-          background: "linear-gradient(180deg, rgba(88, 86, 214, 0.05) 0%, var(--background) 100%)",
+          background: `linear-gradient(rgba(9, 87, 177, 0.9), rgba(87, 210, 225, 0.9)), url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          color: "white",
         }}
       >
-        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
-          <div className="badge badge-blue" style={{ marginBottom: "16px" }}>
-            👥 Community Hub
-          </div>
-          <h1 style={{ fontSize: "48px", marginBottom: "20px" }}>
-            Learn & Grow{" "}
-            <span className="text-gradient">Together</span>
+        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
+          <h1 style={{ fontSize: "52px", marginBottom: "24px", color: "white" }}>
+            Join Our <span style={{ opacity: 0.95 }}>Community</span>
           </h1>
-          <p className="text-accessible" style={{ color: "var(--gray-500)" }}>
-            Join a supportive community of seniors navigating the digital world. 
-            Share experiences, ask questions, and help each other stay safe.
+          <p style={{ fontSize: "22px", lineHeight: 1.6, opacity: 0.95 }}>
+            Learn together with others in a supportive environment. Free workshops to help you detect AI-generated content and stay safe online.
           </p>
         </div>
       </section>
 
-      {/* Community Stats */}
-      <section style={{ padding: "40px 24px" }}>
-        <div
-          style={{
-            maxWidth: "800px",
-            margin: "0 auto",
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))",
-            gap: "24px",
-            textAlign: "center",
-          }}
-        >
-          {[
-            { number: "10,547", label: "Active Members" },
-            { number: "2,340", label: "Topics Discussed" },
-            { number: "156", label: "Workshops Held" },
-            { number: "98%", label: "Satisfaction Rate" },
-          ].map((stat, index) => (
-            <div key={index} className="card" style={{ padding: "24px" }}>
-              <div
-                style={{
-                  fontSize: "32px",
-                  fontWeight: 700,
-                  color: "var(--primary)",
-                  marginBottom: "4px",
-                }}
-              >
-                {stat.number}
-              </div>
-              <p style={{ color: "var(--gray-500)", fontSize: "14px", margin: 0 }}>
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Upcoming Events */}
-      <section className="section-padding" id="events">
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", flexWrap: "wrap", gap: "16px" }}>
-            <div>
-              <h2 style={{ fontSize: "32px", marginBottom: "8px" }}>
-                Upcoming Events
-              </h2>
-              <p style={{ color: "var(--gray-500)", margin: 0 }}>
-                Free workshops and meetups for our community
-              </p>
-            </div>
-            <button className="btn-secondary">View All Events</button>
+      {/* Upcoming Events - Large Image Cards */}
+      <section className="section-padding">
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ marginBottom: "48px", textAlign: "center" }}>
+            <h2 style={{ fontSize: "40px", marginBottom: "12px" }}>
+              Upcoming Workshops
+            </h2>
+            <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
+              Register for free workshops in your area or join us online
+            </p>
           </div>
-          
-          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+          <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
             {upcomingEvents.map((event, index) => (
               <div
                 key={index}
-                className="card"
+                className="glass-card"
                 style={{
-                  padding: "24px",
-                  display: "flex",
-                  justifyContent: "space-between",
+                  padding: "0",
+                  overflow: "hidden",
+                  display: "grid",
+                  gridTemplateColumns: index % 2 === 0 ? "1fr 1.2fr" : "1.2fr 1fr",
                   alignItems: "center",
-                  flexWrap: "wrap",
-                  gap: "16px",
+                  gap: "0",
                 }}
               >
-                <div>
-                  <h3 style={{ fontSize: "18px", marginBottom: "8px" }}>{event.title}</h3>
-                  <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                    <span style={{ color: "var(--gray-500)", fontSize: "14px" }}>
-                      📅 {event.date}
-                    </span>
-                    <span style={{ color: "var(--gray-500)", fontSize: "14px" }}>
-                      🕐 {event.time}
-                    </span>
-                    <span
-                      className={`badge ${event.type === "Virtual" ? "badge-blue" : "badge-green"}`}
-                    >
-                      {event.type}
-                    </span>
+                {/* Image Side */}
+                {index % 2 === 0 && (
+                  <div style={{ height: "100%", minHeight: "320px", position: "relative" }}>
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                      }}
+                    />
                   </div>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-                  <span style={{ color: "var(--gray-400)", fontSize: "14px" }}>
-                    {event.spots}
-                  </span>
-                  <button className="btn-primary" style={{ padding: "10px 20px", fontSize: "15px" }}>
-                    Register
+                )}
+
+                {/* Content Side */}
+                <div style={{ padding: "40px" }}>
+                  <div
+                    className={`badge ${event.type === "Virtual" ? "badge-blue" : "badge-green"}`}
+                    style={{ marginBottom: "20px" }}
+                  >
+                    {event.type}
+                  </div>
+
+                  <h3 style={{ fontSize: "28px", marginBottom: "16px" }}>
+                    {event.title}
+                  </h3>
+
+                  <p style={{ fontSize: "18px", color: "var(--gray-600)", marginBottom: "28px", lineHeight: 1.7 }}>
+                    {event.description}
+                  </p>
+
+                  <div style={{ marginBottom: "28px" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      <Calendar size={22} style={{ color: "var(--primary)" }} />
+                      <span style={{ fontSize: "17px", color: "var(--gray-600)" }}>
+                        {event.date}
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                        marginBottom: "12px",
+                      }}
+                    >
+                      <Clock size={22} style={{ color: "var(--primary)" }} />
+                      <span style={{ fontSize: "17px", color: "var(--gray-600)" }}>
+                        {event.time}
+                      </span>
+                    </div>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                      }}
+                    >
+                      <MapPin size={22} style={{ color: "var(--primary)" }} />
+                      <span style={{ fontSize: "17px", color: "var(--gray-600)" }}>
+                        {event.location}
+                      </span>
+                    </div>
+                  </div>
+
+                  <button className="btn-primary" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                    Register Now
+                    <ArrowRight size={20} />
                   </button>
                 </div>
+
+                {/* Image Side (alternate) */}
+                {index % 2 !== 0 && (
+                  <div style={{ height: "100%", minHeight: "320px", position: "relative" }}>
+                    <img
+                      src={event.image}
+                      alt={event.title}
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                        position: "absolute",
+                        top: 0,
+                        left: 0,
+                      }}
+                    />
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Discussion Forum Preview */}
+      {/* Learning Methods - Image Grid */}
       <section className="section-padding" style={{ background: "var(--gray-50)" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "32px", flexWrap: "wrap", gap: "16px" }}>
-            <div>
-              <h2 style={{ fontSize: "32px", marginBottom: "8px" }}>
-                Community Discussions
-              </h2>
-              <p style={{ color: "var(--gray-500)", margin: 0 }}>
-                Ask questions and share your knowledge
-              </p>
-            </div>
-            <button className="btn-primary">Start a Discussion</button>
-          </div>
-          
-          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-            {discussions.map((discussion, index) => (
-              <div
-                key={index}
-                className="card"
-                style={{
-                  padding: "20px 24px",
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  cursor: "pointer",
-                }}
-              >
-                <div>
-                  <h3 style={{ fontSize: "16px", marginBottom: "6px", fontWeight: 500 }}>
-                    {discussion.title}
-                  </h3>
-                  <p style={{ color: "var(--gray-400)", fontSize: "14px", margin: 0 }}>
-                    Started by {discussion.author} • {discussion.lastActive}
-                  </p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "8px",
-                    color: "var(--gray-500)",
-                    fontSize: "14px",
-                  }}
-                >
-                  💬 {discussion.replies} replies
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Success Stories */}
-      <section className="section-padding">
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <h2 style={{ fontSize: "32px", marginBottom: "16px" }}>
-              Success Stories
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <h2 style={{ fontSize: "40px", marginBottom: "16px" }}>
+              Ways to Learn with Us
             </h2>
-            <p style={{ color: "var(--gray-500)", fontSize: "18px" }}>
-              Real experiences from our community members
+            <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
+              Choose the learning method that works best for you
             </p>
           </div>
-          
+
           <div
             style={{
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-              gap: "24px",
+              gap: "32px",
             }}
           >
-            {successStories.map((story, index) => (
+            {[
+              {
+                title: "Online Workshops",
+                description: "Join from home using your computer or tablet. We'll guide you step by step through detecting AI content.",
+                image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=800&q=80",
+              },
+              {
+                title: "Call for Help",
+                description: "Prefer talking on the phone? Call us for one-on-one assistance with any questions about AI detection.",
+                image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80",
+              },
+              {
+                title: "In-Person Meetings",
+                description: "Meet face-to-face at community centers and libraries. Learn together with others in your area.",
+                image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
+              },
+              {
+                title: "Email Tips",
+                description: "Get helpful tips and workshop reminders delivered to your inbox weekly. Stay informed and safe.",
+                image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&q=80",
+              },
+            ].map((item, index) => (
               <div
                 key={index}
-                className="card"
-                style={{ padding: "32px" }}
+                className="glass-card"
+                style={{
+                  padding: "0",
+                  overflow: "hidden",
+                }}
               >
-                <div style={{ fontSize: "48px", marginBottom: "16px", opacity: 0.2 }}>"</div>
+                <div style={{ height: "200px", overflow: "hidden" }}>
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                </div>
+                <div style={{ padding: "28px" }}>
+                  <h3 style={{ fontSize: "22px", marginBottom: "12px" }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ fontSize: "17px", color: "var(--gray-600)", lineHeight: 1.6 }}>
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials with Photos */}
+      <section className="section-padding">
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: "56px" }}>
+            <h2 style={{ fontSize: "40px", marginBottom: "16px" }}>
+              What People Are Saying
+            </h2>
+            <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
+              Real stories from community members
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+              gap: "32px",
+            }}
+          >
+            {[
+              {
+                quote: "The workshop helped me spot fake photos my grandchildren send me. Now I can tell what's real and what's AI-generated!",
+                author: "Mary, 72",
+                image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
+              },
+              {
+                quote: "I never understood AI before. Now I know how to protect myself from scams and fake images. Thank you AuthentiKa!",
+                author: "Robert, 68",
+                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
+              },
+              {
+                quote: "The staff is patient and explains everything clearly. I feel confident using the internet now and can spot fakes easily.",
+                author: "Linda, 75",
+                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
+              },
+            ].map((testimonial, index) => (
+              <div
+                key={index}
+                className="glass-card"
+                style={{ padding: "32px", textAlign: "center" }}
+              >
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.author}
+                  style={{
+                    width: "80px",
+                    height: "80px",
+                    borderRadius: "50%",
+                    objectFit: "cover",
+                    margin: "0 auto 24px",
+                    border: "3px solid var(--primary)",
+                  }}
+                />
+                <div style={{ fontSize: "48px", marginBottom: "16px", opacity: 0.3, color: "var(--primary)" }}>"</div>
                 <p
                   style={{
                     fontSize: "17px",
@@ -278,70 +322,10 @@ export default function CommunityPage() {
                     color: "var(--gray-600)",
                   }}
                 >
-                  {story.quote}
+                  {testimonial.quote}
                 </p>
-                <div>
-                  <p style={{ fontWeight: 600, marginBottom: "4px", margin: 0 }}>{story.author}</p>
-                  <p style={{ color: "var(--gray-400)", fontSize: "14px", margin: 0 }}>
-                    {story.location}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Ways to Connect */}
-      <section className="section-padding" style={{ background: "var(--gray-50)" }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "48px" }}>
-            <h2 style={{ fontSize: "32px", marginBottom: "16px" }}>
-              Ways to Connect
-            </h2>
-            <p style={{ color: "var(--gray-500)", fontSize: "18px" }}>
-              Choose how you would like to engage with our community
-            </p>
-          </div>
-          
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
-              gap: "24px",
-            }}
-          >
-            {[
-              {
-                icon: "💻",
-                title: "Virtual Workshops",
-                description: "Join live online sessions from the comfort of your home. No travel needed!",
-              },
-              {
-                icon: "📞",
-                title: "Phone Support",
-                description: "Prefer talking? Call our friendly support line for one-on-one help.",
-              },
-              {
-                icon: "🤝",
-                title: "Local Meetups",
-                description: "Meet other community members in person at locations near you.",
-              },
-              {
-                icon: "📧",
-                title: "Email Newsletter",
-                description: "Get weekly tips and updates delivered straight to your inbox.",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="card"
-                style={{ padding: "28px", textAlign: "center" }}
-              >
-                <div style={{ fontSize: "48px", marginBottom: "16px" }}>{item.icon}</div>
-                <h3 style={{ fontSize: "20px", marginBottom: "12px" }}>{item.title}</h3>
-                <p style={{ color: "var(--gray-500)", fontSize: "15px", margin: 0, lineHeight: 1.6 }}>
-                  {item.description}
+                <p style={{ fontWeight: 600, fontSize: "17px", margin: 0 }}>
+                  {testimonial.author}
                 </p>
               </div>
             ))}
@@ -353,48 +337,30 @@ export default function CommunityPage() {
       <section
         style={{
           padding: "80px 24px",
-          background: "linear-gradient(135deg, var(--secondary), var(--primary))",
+          background: "var(--gray-50)",
           textAlign: "center",
-          color: "white",
         }}
       >
-        <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-          <h2 style={{ fontSize: "32px", marginBottom: "16px", color: "white" }}>
-            Ready to Join Us?
+        <div style={{ maxWidth: "700px", margin: "0 auto" }}>
+          <h2 style={{ fontSize: "40px", marginBottom: "20px" }}>
+            Ready to Join?
           </h2>
-          <p style={{ fontSize: "18px", marginBottom: "32px", opacity: 0.9 }}>
-            Become part of our supportive community today. It is free, friendly, and 
-            focused on helping you succeed.
+          <p style={{ fontSize: "20px", color: "var(--gray-600)", marginBottom: "32px", lineHeight: 1.6 }}>
+            Start detecting AI-generated content today and learn how to stay safe online.
           </p>
-          <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <button
-              style={{
-                background: "white",
-                color: "var(--primary)",
-                padding: "16px 32px",
-                borderRadius: "12px",
-                fontWeight: 500,
-                fontSize: "17px",
-                border: "none",
-                cursor: "pointer",
-              }}
-            >
-              Join for Free
-            </button>
-            <Link
-              href="/tips"
-              style={{
-                background: "rgba(255, 255, 255, 0.2)",
-                color: "white",
-                padding: "16px 32px",
-                borderRadius: "12px",
-                fontWeight: 500,
-                fontSize: "17px",
-                textDecoration: "none",
-                border: "1px solid rgba(255, 255, 255, 0.3)",
-              }}
-            >
-              Browse Safety Tips
+          <div
+            style={{
+              display: "flex",
+              gap: "20px",
+              justifyContent: "center",
+              flexWrap: "wrap",
+            }}
+          >
+            <Link href="/" className="btn-primary">
+              Verify an Image
+            </Link>
+            <Link href="/learn" className="btn-secondary">
+              Learn Detection Skills
             </Link>
           </div>
         </div>

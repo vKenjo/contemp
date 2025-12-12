@@ -1,27 +1,24 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const poppins = Poppins({
+  variable: "--font-poppins",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "WiseGuard AI - Responsible AI for Seniors",
-  description: "Empowering elderly communities to use AI safely and protect their digital memories. Learn about responsible AI use and photo data privacy.",
-  keywords: ["AI safety", "elderly", "seniors", "data privacy", "photo protection", "responsible AI"],
-  authors: [{ name: "WiseGuard AI Team" }],
+  title: "AuthentiKa - Verify Your Photos Safely",
+  description: "AuthentiKa helps elderly communities verify and protect their photos. Simple, safe, and easy to use.",
+  keywords: ["photo verification", "elderly", "seniors", "photo protection", "community engagement", "safe photos"],
+  authors: [{ name: "AuthentiKa Team" }],
   openGraph: {
-    title: "WiseGuard AI - Responsible AI for Seniors",
-    description: "Empowering elderly communities to use AI safely and protect their digital memories.",
+    title: "AuthentiKa - Verify Your Photos Safely",
+    description: "AuthentiKa helps elderly communities verify and protect their photos.",
     type: "website",
   },
 };
@@ -34,8 +31,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${poppins.variable} antialiased`}
       >
+        <ScrollToTop />
         <Navigation />
         <main>{children}</main>
         <Footer />

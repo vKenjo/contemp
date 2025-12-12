@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Mail, Phone, MessageCircle } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -11,142 +13,90 @@ export default function Footer() {
     >
       <div
         style={{
-          maxWidth: "1200px",
+          maxWidth: "1000px",
           margin: "0 auto",
         }}
       >
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
             gap: "48px",
             marginBottom: "48px",
           }}
         >
           {/* Brand */}
           <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "16px",
-              }}
-            >
-              <div
-                style={{
-                  width: "36px",
-                  height: "36px",
-                  background: "linear-gradient(135deg, var(--primary), var(--secondary))",
-                  borderRadius: "8px",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "white",
-                  fontSize: "18px",
-                }}
-              >
-                🛡️
-              </div>
-              <span style={{ fontWeight: 600, fontSize: "18px" }}>WiseGuard AI</span>
+            <div style={{ marginBottom: "16px" }}>
+              <Image
+                src="/authentika_logo.svg"
+                alt="AuthentiKa"
+                width={140}
+                height={40}
+                style={{ height: "40px", width: "auto" }}
+              />
             </div>
             <p
               style={{
-                color: "var(--gray-500)",
-                fontSize: "15px",
+                color: "var(--gray-600)",
+                fontSize: "17px",
                 lineHeight: 1.6,
               }}
             >
-              Empowering seniors to navigate AI safely and protect their digital memories.
+              Helping elderly communities detect AI-generated content and stay safe online.
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "16px", color: "var(--gray-400)" }}>
-              QUICK LINKS
+            <h4 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "20px", color: "var(--gray-600)" }}>
+              Quick Links
             </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <Link href="/learn" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                Learn About AI
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <Link href="/" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
+                Home
               </Link>
-              <Link href="/photo-protection" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                Photo Protection
+              <Link href="/learn" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
+                Learn to Detect AI
               </Link>
-              <Link href="/community" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                Community Hub
-              </Link>
-              <Link href="/tips" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                Safety Tips
-              </Link>
-            </div>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h4 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "16px", color: "var(--gray-400)" }}>
-              RESOURCES
-            </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <Link href="/about" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                About Us
-              </Link>
-              <Link href="/tips#faq" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                FAQ
-              </Link>
-              <Link href="/community#events" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                Events
-              </Link>
-              <Link href="/learn#glossary" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "15px" }}>
-                AI Glossary
+              <Link href="/community" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
+                Community Workshops
               </Link>
             </div>
           </div>
 
           {/* Contact */}
           <div>
-            <h4 style={{ fontSize: "14px", fontWeight: 600, marginBottom: "16px", color: "var(--gray-400)" }}>
-              GET IN TOUCH
+            <h4 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "20px", color: "var(--gray-600)" }}>
+              Need Help?
             </h4>
-            <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <p style={{ color: "var(--gray-600)", fontSize: "15px", margin: 0 }}>
-                📧 support@wiseguardai.app
-              </p>
-              <p style={{ color: "var(--gray-600)", fontSize: "15px", margin: 0 }}>
-                📞 1-800-WISE-GUARD
-              </p>
-              <p style={{ color: "var(--gray-600)", fontSize: "15px", margin: 0 }}>
-                💬 24/7 Help Available
-              </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
+                <Mail size={20} />
+                <span>help@authentika.com</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
+                <Phone size={20} />
+                <span>1-800-AUTH-HELP</span>
+              </div>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
+                <MessageCircle size={20} />
+                <span>We're here to help</span>
+              </div>
             </div>
           </div>
         </div>
 
         <div
           style={{
-            borderTop: "1px solid var(--gray-200)",
+            borderTop: "1px solid var(--gray-300)",
             paddingTop: "24px",
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            alignItems: "center",
-            gap: "16px",
+            textAlign: "center",
           }}
         >
-          <p style={{ color: "var(--gray-400)", fontSize: "14px", margin: 0 }}>
-            © 2025 WiseGuard AI. All rights reserved.
+          <p style={{ color: "var(--gray-500)", fontSize: "16px", margin: 0 }}>
+            © 2025 AuthentiKa. Made with care for our elderly community.
           </p>
-          <div style={{ display: "flex", gap: "24px" }}>
-            <Link href="#" style={{ color: "var(--gray-400)", textDecoration: "none", fontSize: "14px" }}>
-              Privacy Policy
-            </Link>
-            <Link href="#" style={{ color: "var(--gray-400)", textDecoration: "none", fontSize: "14px" }}>
-              Terms of Service
-            </Link>
-            <Link href="#" style={{ color: "var(--gray-400)", textDecoration: "none", fontSize: "14px" }}>
-              Accessibility
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

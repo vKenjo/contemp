@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { X, Menu } from "lucide-react";
+import Image from "next/image";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,145 +11,140 @@ export default function Navigation() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/learn", label: "Learn" },
-    { href: "/photo-protection", label: "Photo Safety" },
     { href: "/community", label: "Community" },
-    { href: "/tips", label: "Safety Tips" },
-    { href: "/about", label: "About" },
   ];
 
   return (
-    <nav
-      style={{
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-        background: "rgba(255, 255, 255, 0.8)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid var(--gray-200)",
-      }}
-    >
-      <div
+    <>
+      <nav
         style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          padding: "16px 24px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          position: "fixed",
+          top: "20px",
+          left: "50%",
+          transform: "translateX(-50%)",
+          zIndex: 100,
+          width: "95%",
+          maxWidth: "1100px",
         }}
       >
-        {/* Logo */}
-        <Link
-          href="/"
+        <div className="floating-header"
           style={{
+            padding: "16px 32px",
             display: "flex",
             alignItems: "center",
-            gap: "10px",
-            textDecoration: "none",
-            color: "var(--foreground)",
+            justifyContent: "space-between",
           }}
         >
-          <div
+          {/* Logo */}
+          <Link
+            href="/"
             style={{
-              width: "40px",
-              height: "40px",
-              background: "linear-gradient(135deg, var(--primary), var(--secondary))",
-              borderRadius: "10px",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              color: "white",
-              fontSize: "20px",
+              textDecoration: "none",
             }}
           >
-            🛡️
+            <Image
+              src="/authentika_logo.svg"
+              alt="AuthentiKa"
+              width={140}
+              height={40}
+              style={{ height: "40px", width: "auto" }}
+              priority
+            />
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "40px",
+            }}
+            className="desktop-nav"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                style={{
+                  textDecoration: "none",
+                  color: "var(--gray-600)",
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  transition: "color 0.2s ease",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--primary)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gray-600)")}
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
-          <span style={{ fontWeight: 600, fontSize: "20px" }}>WiseGuard AI</span>
-        </Link>
 
-        {/* Desktop Navigation */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "32px",
-          }}
-          className="desktop-nav"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              style={{
-                textDecoration: "none",
-                color: "var(--gray-500)",
-                fontSize: "15px",
-                fontWeight: 500,
-                transition: "color 0.2s ease",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--primary)")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--gray-500)")}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            style={{
+              display: "none",
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "8px",
+              color: "var(--foreground)",
+            }}
+            className="mobile-menu-btn"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          style={{
-            display: "none",
-            background: "none",
-            border: "none",
-            fontSize: "24px",
-            cursor: "pointer",
-            padding: "8px",
-          }}
-          className="mobile-menu-btn"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? "✕" : "☰"}
-        </button>
-      </div>
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div
+            className="glass-card"
+            style={{
+              marginTop: "12px",
+              padding: "20px",
+              display: "flex",
+              flexDirection: "column",
+              gap: "12px",
+            }}
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                style={{
+                  textDecoration: "none",
+                  color: "var(--foreground)",
+                  fontSize: "18px",
+                  fontWeight: 500,
+                  padding: "16px",
+                  borderRadius: "12px",
+                  background: "rgba(9, 87, 177, 0.05)",
+                  transition: "all 0.2s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.background = "rgba(9, 87, 177, 0.15)";
+                  e.currentTarget.style.color = "var(--primary)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.background = "rgba(9, 87, 177, 0.05)";
+                  e.currentTarget.style.color = "var(--foreground)";
+                }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        )}
+      </nav>
 
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            left: 0,
-            right: 0,
-            background: "var(--background)",
-            borderBottom: "1px solid var(--gray-200)",
-            padding: "16px 24px",
-            display: "flex",
-            flexDirection: "column",
-            gap: "16px",
-          }}
-          className="mobile-menu"
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsMenuOpen(false)}
-              style={{
-                textDecoration: "none",
-                color: "var(--foreground)",
-                fontSize: "17px",
-                fontWeight: 500,
-                padding: "12px 0",
-                borderBottom: "1px solid var(--gray-100)",
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-      )}
+      {/* Spacer to prevent content from going under fixed nav */}
+      <div style={{ height: "100px" }} />
 
       <style jsx>{`
         @media (max-width: 768px) {
@@ -159,6 +156,6 @@ export default function Navigation() {
           }
         }
       `}</style>
-    </nav>
+    </>
   );
 }
