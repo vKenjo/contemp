@@ -37,8 +37,8 @@ export default function Home() {
       {/* Combined Hero and Upload Section */}
       <section
         style={{
-          padding: "80px 24px 120px",
-          background: `linear-gradient(135deg, rgba(91, 140, 219, 0.05) 0%, rgba(124, 141, 181, 0.05) 100%)`,
+          padding: "120px 24px 120px",
+          background: "var(--background)",
           minHeight: "80vh",
           display: "flex",
           flexDirection: "column",
