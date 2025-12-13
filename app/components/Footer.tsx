@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import { Mail, Phone, MessageCircle } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../lib/LanguageContext";
 
 export default function Footer() {
+  const { t } = useLanguage();
+
   return (
     <footer
       style={{
@@ -43,24 +48,24 @@ export default function Footer() {
                 lineHeight: 1.6,
               }}
             >
-              Helping elderly communities detect AI-generated content and stay safe online.
+              {t.footer.tagline}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "20px", color: "var(--gray-600)" }}>
-              Quick Links
+              {t.footer.quickLinks}
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
               <Link href="/" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
-                Home
+                {t.nav.home}
               </Link>
               <Link href="/learn" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
-                Learn to Detect AI
+                {t.footer.learnToDetect}
               </Link>
               <Link href="/community" style={{ color: "var(--gray-600)", textDecoration: "none", fontSize: "17px" }}>
-                Community Workshops
+                {t.footer.communityWorkshops}
               </Link>
             </div>
           </div>
@@ -68,7 +73,7 @@ export default function Footer() {
           {/* Contact */}
           <div>
             <h4 style={{ fontSize: "16px", fontWeight: 600, marginBottom: "20px", color: "var(--gray-600)" }}>
-              Need Help?
+              {t.footer.needHelp}
             </h4>
             <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
@@ -81,7 +86,7 @@ export default function Footer() {
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: "8px", color: "var(--gray-600)", fontSize: "17px" }}>
                 <MessageCircle size={20} />
-                <span>We&apos;re here to help</span>
+                <span>{t.footer.hereToHelp}</span>
               </div>
             </div>
           </div>
@@ -95,7 +100,7 @@ export default function Footer() {
           }}
         >
           <p style={{ color: "var(--gray-500)", fontSize: "16px", margin: 0 }}>
-            © 2025 AuthentiKa. Made with care for our elderly community.
+            {t.footer.copyright}
           </p>
         </div>
       </div>

@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import { CheckCircle2, Upload, AlertCircle, Shield, Users, BookOpen, Camera, TrendingUp, Brain, Lock } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "./lib/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string>("");
   const [verificationStatus, setVerificationStatus] = useState<"idle" | "verifying" | "verified" | "ai-generated">("idle");
@@ -59,7 +61,7 @@ export default function Home() {
                 letterSpacing: "-0.02em",
               }}
             >
-              Is this <span className="text-gradient">real</span> or <span className="text-gradient">AI</span>?
+              {t.home.heroTitle} <span className="text-gradient">{t.home.heroReal}</span> {t.home.heroOr} <span className="text-gradient">{t.home.heroAI}</span>{t.home.heroQuestion}
             </h1>
 
             <p
@@ -71,7 +73,7 @@ export default function Home() {
                 lineHeight: 1.6,
               }}
             >
-              Simple tools to help you stay safe online. Just upload a photo to check if it is real.
+              {t.home.heroSubtitle}
             </p>
           </div>
 
@@ -96,10 +98,10 @@ export default function Home() {
                 >
                   <Upload size={64} style={{ margin: "0 auto 16px", color: "var(--primary)" }} />
                   <p style={{ fontSize: "22px", fontWeight: 600, marginBottom: "8px", color: "var(--primary)" }}>
-                    Tap here to Check a Photo
+                    {t.home.tapToCheck}
                   </p>
                   <p style={{ fontSize: "18px", color: "var(--gray-500)" }}>
-                    We&apos;ll tell you if it&apos;s real or not
+                    {t.home.tellYouIfReal}
                   </p>
                 </label>
                 <input
@@ -140,7 +142,7 @@ export default function Home() {
                     className="btn-primary"
                     style={{ width: "100%", marginBottom: "16px", fontSize: "20px" }}
                   >
-                    Check if Real
+                    {t.home.checkIfReal}
                   </button>
                 )}
 
@@ -157,7 +159,7 @@ export default function Home() {
                       <Shield size={48} style={{ margin: "0 auto", color: "var(--primary)" }} />
                     </div>
                     <p style={{ fontSize: "20px", fontWeight: 500 }}>
-                      Checking...
+                      {t.home.checking}
                     </p>
                   </div>
                 )}
@@ -173,10 +175,10 @@ export default function Home() {
                   >
                     <CheckCircle2 size={64} style={{ margin: "0 auto 16px", color: "var(--success)" }} />
                     <h3 style={{ fontSize: "24px", marginBottom: "12px", color: "var(--success)" }}>
-                      It&apos;s Authentic!
+                      {t.home.itsAuthentic}
                     </h3>
                     <p style={{ fontSize: "18px", color: "var(--gray-600)" }}>
-                      Good news! This photo looks real.
+                      {t.home.goodNews}
                     </p>
                   </div>
                 )}
@@ -192,10 +194,10 @@ export default function Home() {
                   >
                     <AlertCircle size={64} style={{ margin: "0 auto 16px", color: "var(--warning)" }} />
                     <h3 style={{ fontSize: "24px", marginBottom: "12px", color: "var(--warning)" }}>
-                      Be Careful
+                      {t.home.beCareful}
                     </h3>
                     <p style={{ fontSize: "18px", color: "var(--gray-600)" }}>
-                      This might be fake or AI-created. Don&apos;t trust it immediately.
+                      {t.home.mightBeFake}
                     </p>
                   </div>
                 )}
@@ -209,7 +211,7 @@ export default function Home() {
                   className="btn-secondary"
                   style={{ width: "100%" }}
                 >
-                  Check Another Photo
+                  {t.home.checkAnother}
                 </button>
               </div>
             )}
@@ -229,10 +231,10 @@ export default function Home() {
             }}
           >
             {[
-              { number: "78%", label: "of seniors concerned about AI", icon: <TrendingUp size={40} /> },
-              { number: "3.2B", label: "AI images created daily", icon: <Brain size={40} /> },
-              { number: "65%", label: "can't identify AI photos", icon: <Camera size={40} /> },
-              { number: "100%", label: "of your safety is our priority", icon: <Lock size={40} /> },
+              { number: "78%", label: t.home.seniorsConcerned, icon: <TrendingUp size={40} /> },
+              { number: "3.2B", label: t.home.aiImagesDaily, icon: <Brain size={40} /> },
+              { number: "65%", label: t.home.cantIdentify, icon: <Camera size={40} /> },
+              { number: "100%", label: t.home.safetyPriority, icon: <Lock size={40} /> },
             ].map((stat, index) => (
               <div key={index}>
                 <div style={{ marginBottom: "16px", opacity: 0.9 }}>
@@ -281,24 +283,21 @@ export default function Home() {
             {/* Content Side */}
             <div>
               <h2 style={{ fontSize: "40px", marginBottom: "24px" }}>
-                Why AuthentiKa Matters
+                {t.home.whyMatters}
               </h2>
               <p style={{ fontSize: "19px", color: "var(--gray-600)", lineHeight: 1.7, marginBottom: "24px" }}>
-                AuthentiKa was created with one simple goal: to help elderly community members detect
-                AI-generated content and stay safe from fake photos and videos.
+                {t.home.aboutP1}
               </p>
               <p style={{ fontSize: "19px", color: "var(--gray-600)", lineHeight: 1.7, marginBottom: "32px" }}>
-                We recognized that seniors are often left behind in conversations about technology and AI.
-                But your photos, your memories, and your digital presence matter. You deserve to understand
-                how AI is being used and how to protect yourself from fake content.
+                {t.home.aboutP2}
               </p>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 {[
-                  "Detect AI-generated images instantly",
-                  "Learn through simple, clear courses",
-                  "Join a supportive community",
-                  "Stay protected from AI scams",
+                  t.home.detectInstantly,
+                  t.home.learnSimple,
+                  t.home.joinSupportive,
+                  t.home.stayProtected,
                 ].map((item, index) => (
                   <div key={index} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                     <CheckCircle2 size={24} style={{ color: "var(--success)", flexShrink: 0 }} />
@@ -316,10 +315,10 @@ export default function Home() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <h2 style={{ fontSize: "40px", marginBottom: "16px" }}>
-              How We Help You Stay Safe
+              {t.home.howWeHelp}
             </h2>
             <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
-              Three simple ways to protect yourself from AI-generated content
+              {t.home.threeWays}
             </p>
           </div>
 
@@ -333,20 +332,20 @@ export default function Home() {
             {[
               {
                 icon: <Camera size={40} />,
-                title: "Detect AI Content",
-                description: "Upload any photo or video to check if it's real or AI-generated. Get results in seconds with our advanced detection system.",
+                title: t.home.detectAI,
+                description: t.home.detectAIDesc,
                 image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
               },
               {
                 icon: <BookOpen size={40} />,
-                title: "Learn Detection Skills",
-                description: "Take our step-by-step courses designed for seniors. Learn to spot fake images and protect yourself from scams.",
+                title: t.home.learnSkills,
+                description: t.home.learnSkillsDesc,
                 image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&q=80",
               },
               {
                 icon: <Users size={40} />,
-                title: "Join Workshops",
-                description: "Connect with others at community workshops. Learn together in a supportive, welcoming environment.",
+                title: t.home.joinWorkshops,
+                description: t.home.joinWorkshopsDesc,
                 image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
               },
             ].map((feature, index) => (
@@ -413,10 +412,10 @@ export default function Home() {
               style={{ margin: "0 auto 24px" }}
             />
             <h2 style={{ fontSize: "36px", marginBottom: "16px" }}>
-              Trusted by Thousands of Seniors
+              {t.home.trustedBy}
             </h2>
             <p style={{ fontSize: "20px", color: "var(--gray-600)", maxWidth: "700px", margin: "0 auto" }}>
-              Join a growing community of elderly people learning to navigate the digital world safely and confidently.
+              {t.home.trustSubtitle}
             </p>
           </div>
 
@@ -428,10 +427,10 @@ export default function Home() {
             }}
           >
             {[
-              { label: "Active Users", value: "10,000+" },
-              { label: "Photos Verified", value: "2.5M+" },
-              { label: "Workshops Held", value: "500+" },
-              { label: "Satisfaction Rate", value: "98%" },
+              { label: t.home.activeUsers, value: "10,000+" },
+              { label: t.home.photosVerified, value: "2.5M+" },
+              { label: t.home.workshopsHeld, value: "500+" },
+              { label: t.home.satisfactionRate, value: "98%" },
             ].map((item, index) => (
               <div key={index} className="glass-card" style={{ padding: "28px" }}>
                 <div style={{ fontSize: "36px", fontWeight: 700, color: "var(--primary)", marginBottom: "8px" }}>
@@ -450,10 +449,10 @@ export default function Home() {
       <section className="section-padding" style={{ background: "var(--gray-50)" }}>
         <div style={{ maxWidth: "800px", margin: "0 auto", textAlign: "center" }}>
           <h2 style={{ fontSize: "40px", marginBottom: "20px" }}>
-            Ready to Get Started?
+            {t.home.readyToStart}
           </h2>
           <p style={{ fontSize: "20px", color: "var(--gray-600)", marginBottom: "40px", lineHeight: 1.6 }}>
-            Start detecting AI-generated content today and learn how to stay safe online.
+            {t.home.startDetecting}
           </p>
 
           <div
@@ -465,10 +464,10 @@ export default function Home() {
             }}
           >
             <Link href="#upload" className="btn-primary">
-              Verify an Image Now
+              {t.home.verifyNow}
             </Link>
             <Link href="/learn" className="btn-secondary">
-              Start Learning
+              {t.home.startLearning}
             </Link>
           </div>
         </div>

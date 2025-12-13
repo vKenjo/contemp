@@ -16,6 +16,7 @@ import {
   Award
 } from "lucide-react";
 import { Course, Lesson, ContentBlock } from "../lib/courseData";
+import { useLanguage } from "../lib/LanguageContext";
 
 interface CourseViewerProps {
   course: Course;
@@ -23,6 +24,7 @@ interface CourseViewerProps {
 }
 
 export default function CourseViewer({ course, onComplete }: CourseViewerProps) {
+  const { t } = useLanguage();
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [completedLessons, setCompletedLessons] = useState<number[]>([]);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -157,12 +159,12 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
   }
 
   return (
-    <div style={{ minHeight: "100vh", background: "var(--background)" }}>
+    <div style={{ minHeight: "100vh", background: "var(--background)", paddingTop: "100px" }}>
       {/* Top Progress Bar */}
       <div
         style={{
           position: "sticky",
-          top: "80px",
+          top: "100px",
           zIndex: 50,
           background: "var(--background)",
           borderBottom: "1px solid var(--gray-200)",
@@ -183,11 +185,11 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
               }}
             >
               <ChevronLeft size={18} />
-              Back to Courses
+              {t.course.backToCourses}
             </Link>
             <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
               <span style={{ fontSize: "14px", color: "var(--gray-500)" }}>
-                {completedLessons.length} of {course.lessons.length} lessons completed
+                {completedLessons.length} {t.course.of} {course.lessons.length} {t.course.lessonsCompleted}
               </span>
               <span style={{ fontSize: "18px", fontWeight: 600, color: "var(--primary)" }}>
                 {Math.round(progressPercentage)}%
@@ -229,15 +231,15 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
           <div
             style={{
               position: "sticky",
-              top: "160px",
+              top: "180px",
               alignSelf: "start",
-              maxHeight: "calc(100vh - 200px)",
+              maxHeight: "calc(100vh - 220px)",
               overflowY: "auto",
             }}
             className="lesson-sidebar"
           >
             <h3 style={{ fontSize: "18px", marginBottom: "16px", color: "var(--gray-600)" }}>
-              Course Contents
+              {t.course.courseContents}
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
               {course.lessons.map((lesson, index) => {
@@ -350,10 +352,10 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
                       color: allLessonsComplete ? "var(--primary)" : "var(--gray-400)",
                     }}
                   >
-                    Take Assessment
+                    {t.course.takeAssessment}
                   </p>
                   <p style={{ margin: "2px 0 0", fontSize: "12px", color: "var(--gray-400)" }}>
-                    {allLessonsComplete ? "Earn your certificate" : "Complete all lessons first"}
+                    {allLessonsComplete ? t.course.earnCertificate : t.course.completeFirst}
                   </p>
                 </div>
               </button>
@@ -448,7 +450,7 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
             <div style={{ maxWidth: "800px" }}>
               <div style={{ marginBottom: "24px" }}>
                 <div className="badge badge-blue" style={{ marginBottom: "12px" }}>
-                  Lesson {currentLessonIndex + 1} of {course.lessons.length}
+                  {t.course.lesson} {currentLessonIndex + 1} {t.course.of} {course.lessons.length}
                 </div>
                 <h1 style={{ fontSize: "36px", marginBottom: "8px", lineHeight: 1.3 }}>
                   {currentLesson.title}
@@ -488,7 +490,7 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
                   }}
                 >
                   <ChevronLeft size={20} />
-                  Previous Lesson
+                  {t.course.previousLesson}
                 </button>
 
                 {currentLessonIndex < course.lessons.length - 1 ? (
@@ -501,7 +503,7 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
                       gap: "8px",
                     }}
                   >
-                    Next Lesson
+                    {t.course.nextLesson}
                     <ChevronRight size={20} />
                   </button>
                 ) : (
@@ -516,7 +518,7 @@ export default function CourseViewer({ course, onComplete }: CourseViewerProps) 
                     }}
                   >
                     <Award size={20} />
-                    Take Assessment
+                    {t.course.takeAssessment}
                   </button>
                 )}
               </div>
@@ -551,6 +553,7 @@ interface CourseQuizProps {
 }
 
 function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
+  const { t } = useLanguage();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
   const [showResult, setShowResult] = useState(false);
@@ -625,12 +628,12 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
               {passed ? "🎉" : "📚"}
             </div>
             <h2 style={{ fontSize: "32px", marginBottom: "16px" }}>
-              {passed ? "Congratulations!" : "Keep Learning!"}
+              {passed ? t.course.congratulations : t.course.keepLearning}
             </h2>
             <p style={{ fontSize: "18px", color: "var(--gray-500)", marginBottom: "32px" }}>
               {passed
-                ? "You've passed the assessment and earned your certificate!"
-                : `You need ${passingScore} correct answers to pass. Review the lessons and try again.`}
+                ? t.course.passedMessage
+                : t.course.failedMessage.replace("{score}", String(passingScore))}
             </p>
 
             <div
@@ -645,7 +648,7 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
                 {score}/{questions.length}
               </div>
               <p style={{ color: "var(--gray-500)", margin: "8px 0 0" }}>
-                Questions Correct
+                {t.course.questionsCorrect}
               </p>
               <div
                 style={{
@@ -657,7 +660,7 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
                 }}
               >
                 <span style={{ fontSize: "14px", fontWeight: 600, color: passed ? "var(--success)" : "#b8860b" }}>
-                  {passed ? "PASSED" : `Need ${passingScore - score} more to pass`}
+                  {passed ? t.course.passed : t.course.needMore.replace("{count}", String(passingScore - score))}
                 </span>
               </div>
             </div>
@@ -675,15 +678,15 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
                   }}
                 >
                   <Award size={20} />
-                  View Certificate
+                  {t.course.viewCertificate}
                 </button>
               ) : (
                 <>
                   <button onClick={handleRetry} className="btn-primary">
-                    Try Again
+                    {t.course.tryAgain}
                   </button>
                   <button onClick={onBack} className="btn-secondary">
-                    Review Lessons
+                    {t.course.reviewLessons}
                   </button>
                 </>
               )}
@@ -701,13 +704,13 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
         <div style={{ marginBottom: "32px", textAlign: "center" }}>
           <div className="badge badge-blue" style={{ marginBottom: "12px" }}>
             <Award size={14} style={{ marginRight: "6px" }} />
-            Course Assessment
+            {t.course.courseAssessment}
           </div>
           <h1 style={{ fontSize: "32px", marginBottom: "8px" }}>
             {course.title}
           </h1>
           <p style={{ color: "var(--gray-500)" }}>
-            Pass with {passingScore} or more correct answers to earn your certificate
+            {t.course.passWithScore.replace("{score}", String(passingScore))}
           </p>
         </div>
 
@@ -715,10 +718,10 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
         <div style={{ marginBottom: "24px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "8px" }}>
             <span style={{ fontSize: "14px", color: "var(--gray-500)" }}>
-              Question {currentQuestion + 1} of {questions.length}
+              {t.course.question} {currentQuestion + 1} {t.course.of} {questions.length}
             </span>
             <span style={{ fontSize: "14px", color: "var(--primary)", fontWeight: 600 }}>
-              Score: {score}
+              {t.course.score}: {score}
             </span>
           </div>
           <div className="progress-bar">
@@ -835,7 +838,7 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
                   {selectedAnswer === question.correctAnswer ? "✅" : "💡"}
                 </span>
                 <strong>
-                  {selectedAnswer === question.correctAnswer ? "Correct!" : "Not quite right"}
+                  {selectedAnswer === question.correctAnswer ? t.course.correct : t.course.notQuiteRight}
                 </strong>
               </div>
               <p style={{ margin: 0, lineHeight: 1.6, color: "var(--gray-600)" }}>
@@ -856,11 +859,11 @@ function CourseQuiz({ course, onComplete, onBack }: CourseQuizProps) {
                   cursor: selectedAnswer === null ? "not-allowed" : "pointer",
                 }}
               >
-                Check Answer
+                {t.course.checkAnswer}
               </button>
             ) : (
               <button onClick={handleNextQuestion} className="btn-primary">
-                {currentQuestion < questions.length - 1 ? "Next Question →" : "See Results"}
+                {currentQuestion < questions.length - 1 ? t.course.nextQuestion : t.course.seeResults}
               </button>
             )}
           </div>
@@ -880,6 +883,7 @@ interface CertificateProps {
 }
 
 function Certificate({ courseName, certificateTitle, score, totalQuestions, onBack }: CertificateProps) {
+  const { t } = useLanguage();
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -907,14 +911,14 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
             }}
           >
             <ChevronLeft size={18} />
-            Back to Courses
+            {t.course.backToCourses}
           </Link>
           <button
             onClick={handlePrint}
             className="btn-primary"
             style={{ display: "flex", alignItems: "center", gap: "8px" }}
           >
-            Print Certificate
+            {t.course.printCertificate}
           </button>
         </div>
 
@@ -967,7 +971,7 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
             </div>
 
             <h3 style={{ fontSize: "16px", color: "var(--primary)", letterSpacing: "3px", marginBottom: "8px" }}>
-              CERTIFICATE OF COMPLETION
+              {t.course.certificateOfCompletion}
             </h3>
 
             <h1 style={{ fontSize: "42px", marginBottom: "16px", color: "var(--foreground)" }}>
@@ -975,7 +979,7 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
             </h1>
 
             <p style={{ fontSize: "18px", color: "var(--gray-500)", marginBottom: "32px" }}>
-              This is to certify that
+              {t.course.certifyThat}
             </p>
 
             <div
@@ -989,11 +993,11 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
                 display: "inline-block",
               }}
             >
-              Course Participant
+              {t.course.courseParticipant}
             </div>
 
             <p style={{ fontSize: "18px", color: "var(--gray-500)", marginBottom: "16px" }}>
-              has successfully completed the course
+              {t.course.completedCourse}
             </p>
 
             <h2 style={{ fontSize: "28px", marginBottom: "32px", color: "var(--foreground)" }}>
@@ -1013,17 +1017,17 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
             >
               <CheckCircle size={20} style={{ color: "var(--success)" }} />
               <span style={{ fontSize: "16px", fontWeight: 600, color: "var(--success)" }}>
-                Assessment Score: {score}/{totalQuestions} ({Math.round((score / totalQuestions) * 100)}%)
+                {t.course.assessmentScore}: {score}/{totalQuestions} ({Math.round((score / totalQuestions) * 100)}%)
               </span>
             </div>
 
             <div style={{ display: "flex", justifyContent: "center", gap: "48px", marginTop: "40px" }}>
               <div>
-                <p style={{ fontSize: "14px", color: "var(--gray-400)", marginBottom: "8px" }}>DATE ISSUED</p>
+                <p style={{ fontSize: "14px", color: "var(--gray-400)", marginBottom: "8px" }}>{t.course.dateIssued}</p>
                 <p style={{ fontSize: "16px", fontWeight: 600 }}>{currentDate}</p>
               </div>
               <div>
-                <p style={{ fontSize: "14px", color: "var(--gray-400)", marginBottom: "8px" }}>ISSUED BY</p>
+                <p style={{ fontSize: "14px", color: "var(--gray-400)", marginBottom: "8px" }}>{t.course.issuedBy}</p>
                 <p style={{ fontSize: "16px", fontWeight: 600 }}>AuthentiKa</p>
               </div>
             </div>
@@ -1033,10 +1037,10 @@ function Certificate({ courseName, certificateTitle, score, totalQuestions, onBa
         {/* Continue Learning */}
         <div style={{ textAlign: "center", marginTop: "32px" }} className="no-print">
           <p style={{ color: "var(--gray-500)", marginBottom: "16px" }}>
-            Ready to continue your learning journey?
+            {t.course.continueJourney}
           </p>
           <Link href="/learn" className="btn-secondary">
-            Explore More Courses
+            {t.course.exploreMore}
           </Link>
         </div>
       </div>

@@ -1,33 +1,37 @@
+"use client";
+
 import Link from "next/link";
 import { Calendar, MapPin, Clock, ArrowRight } from "lucide-react";
+import { useLanguage } from "../lib/LanguageContext";
 
 export default function CommunityPage() {
+  const { t } = useLanguage();
   const upcomingEvents = [
     {
-      title: "Learn to Spot AI Photos",
+      title: t.community.event1Title,
       date: "December 15, 2025",
       time: "2:00 PM",
-      location: "Community Center",
-      type: "In-Person",
-      description: "Hands-on workshop where you'll learn to identify AI-generated images and protect yourself from fake content.",
+      location: t.community.communityCenter,
+      type: t.community.inPerson,
+      description: t.community.event1Desc,
       image: "https://images.unsplash.com/photo-1528605248644-14dd04022da1?w=800&q=80",
     },
     {
-      title: "AI Detection for Beginners",
+      title: t.community.event2Title,
       date: "December 18, 2025",
       time: "10:00 AM",
-      location: "Online Meeting",
-      type: "Virtual",
-      description: "Join from home to learn the basics of detecting AI-generated photos and videos. No tech experience needed.",
+      location: t.community.onlineMeeting,
+      type: t.community.virtual,
+      description: t.community.event2Desc,
       image: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80",
     },
     {
-      title: "Coffee & Discussion Group",
+      title: t.community.event3Title,
       date: "December 20, 2025",
       time: "3:00 PM",
-      location: "Local Library",
-      type: "In-Person",
-      description: "Casual meetup to share experiences, ask questions, and learn from others about staying safe from AI scams.",
+      location: t.community.localLibrary,
+      type: t.community.inPerson,
+      description: t.community.event3Desc,
       image: "https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80",
     },
   ];
@@ -50,10 +54,10 @@ export default function CommunityPage() {
             style={{ width: "150px", marginBottom: "32px", height: "auto" }} 
           />
           <h1 style={{ fontSize: "52px", marginBottom: "24px", color: "white" }}>
-            Join Our <span style={{ opacity: 0.95 }}>Community</span>
+            {t.community.heroTitle} <span style={{ opacity: 0.95 }}>{t.community.heroHighlight}</span>
           </h1>
           <p style={{ fontSize: "22px", lineHeight: 1.6, opacity: 0.95 }}>
-            Learn together with others in a supportive environment. Free workshops to help you detect AI-generated content and stay safe online.
+            {t.community.heroSubtitle}
           </p>
         </div>
       </section>
@@ -63,10 +67,10 @@ export default function CommunityPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ marginBottom: "48px", textAlign: "center" }}>
             <h2 style={{ fontSize: "40px", marginBottom: "12px" }}>
-              Upcoming Workshops
+              {t.community.upcomingWorkshops}
             </h2>
             <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
-              Register for free workshops in your area or join us online
+              {t.community.registerFree}
             </p>
           </div>
 
@@ -161,7 +165,7 @@ export default function CommunityPage() {
                   </div>
 
                   <button className="btn-primary" style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    Register Now
+                    {t.community.registerNow}
                     <ArrowRight size={20} />
                   </button>
                 </div>
@@ -194,10 +198,10 @@ export default function CommunityPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <h2 style={{ fontSize: "40px", marginBottom: "16px" }}>
-              Ways to Learn with Us
+              {t.community.waysToLearn}
             </h2>
             <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
-              Choose the learning method that works best for you
+              {t.community.chooseMethod}
             </p>
           </div>
 
@@ -210,23 +214,23 @@ export default function CommunityPage() {
           >
             {[
               {
-                title: "Online Workshops",
-                description: "Join from home using your computer or tablet. We'll guide you step by step through detecting AI content.",
+                title: t.community.onlineWorkshops,
+                description: t.community.onlineWorkshopsDesc,
                 image: "https://images.unsplash.com/photo-1588196749597-9ff075ee6b5b?w=800&q=80",
               },
               {
-                title: "Call for Help",
-                description: "Prefer talking on the phone? Call us for one-on-one assistance with any questions about AI detection.",
+                title: t.community.callForHelp,
+                description: t.community.callForHelpDesc,
                 image: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800&q=80",
               },
               {
-                title: "In-Person Meetings",
-                description: "Meet face-to-face at community centers and libraries. Learn together with others in your area.",
+                title: t.community.inPersonMeetings,
+                description: t.community.inPersonMeetingsDesc,
                 image: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&q=80",
               },
               {
-                title: "Email Tips",
-                description: "Get helpful tips and workshop reminders delivered to your inbox weekly. Stay informed and safe.",
+                title: t.community.emailTips,
+                description: t.community.emailTipsDesc,
                 image: "https://images.unsplash.com/photo-1557200134-90327ee9fafa?w=800&q=80",
               },
             ].map((item, index) => (
@@ -268,10 +272,10 @@ export default function CommunityPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", marginBottom: "56px" }}>
             <h2 style={{ fontSize: "40px", marginBottom: "16px" }}>
-              What People Are Saying
+              {t.community.whatPeopleSay}
             </h2>
             <p style={{ fontSize: "20px", color: "var(--gray-600)" }}>
-              Real stories from community members
+              {t.community.realStories}
             </p>
           </div>
 
@@ -284,17 +288,17 @@ export default function CommunityPage() {
           >
             {[
               {
-                quote: "The workshop helped me spot fake photos my grandchildren send me. Now I can tell what's real and what's AI-generated!",
+                quote: t.community.testimonial1,
                 author: "Mary, 72",
                 image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80",
               },
               {
-                quote: "I never understood AI before. Now I know how to protect myself from scams and fake images. Thank you AuthentiKa!",
+                quote: t.community.testimonial2,
                 author: "Robert, 68",
                 image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80",
               },
               {
-                quote: "The staff is patient and explains everything clearly. I feel confident using the internet now and can spot fakes easily.",
+                quote: t.community.testimonial3,
                 author: "Linda, 75",
                 image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80",
               },
@@ -346,10 +350,10 @@ export default function CommunityPage() {
       >
         <div style={{ maxWidth: "700px", margin: "0 auto" }}>
           <h2 style={{ fontSize: "40px", marginBottom: "20px" }}>
-            Ready to Join?
+            {t.community.readyToJoin}
           </h2>
           <p style={{ fontSize: "20px", color: "var(--gray-600)", marginBottom: "32px", lineHeight: 1.6 }}>
-            Start detecting AI-generated content today and learn how to stay safe online.
+            {t.community.ctaSubtitle}
           </p>
           <div
             style={{
@@ -360,10 +364,10 @@ export default function CommunityPage() {
             }}
           >
             <Link href="/" className="btn-primary">
-              Verify an Image
+              {t.community.verifyImage}
             </Link>
             <Link href="/learn" className="btn-secondary">
-              Learn Detection Skills
+              {t.community.learnSkills}
             </Link>
           </div>
         </div>

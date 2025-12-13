@@ -2,17 +2,23 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { X, Menu } from "lucide-react";
+import { X, Menu, Globe } from "lucide-react";
 import Image from "next/image";
+import { useLanguage } from "../lib/LanguageContext";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/learn", label: "Learn" },
-    { href: "/community", label: "Community" },
+    { href: "/", label: t.nav.home },
+    { href: "/learn", label: t.nav.learn },
+    { href: "/community", label: t.nav.community },
   ];
+
+  const toggleLanguage = () => {
+    setLanguage(language === "en" ? "tl" : "en");
+  };
 
   return (
     <>
@@ -59,7 +65,7 @@ export default function Navigation() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "40px",
+              gap: "32px",
             }}
             className="desktop-nav"
           >
@@ -80,6 +86,36 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "6px",
+                padding: "8px 14px",
+                borderRadius: "20px",
+                border: "2px solid var(--gray-200)",
+                background: "white",
+                cursor: "pointer",
+                fontSize: "14px",
+                fontWeight: 600,
+                color: "var(--primary)",
+                transition: "all 0.2s ease",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderColor = "var(--primary)";
+                e.currentTarget.style.background = "rgba(9, 87, 177, 0.05)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderColor = "var(--gray-200)";
+                e.currentTarget.style.background = "white";
+              }}
+            >
+              <Globe size={16} />
+              {language === "en" ? "EN" : "TL"}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -139,6 +175,28 @@ export default function Navigation() {
                 {link.label}
               </Link>
             ))}
+            
+            {/* Mobile Language Toggle */}
+            <button
+              onClick={toggleLanguage}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "8px",
+                padding: "16px",
+                borderRadius: "12px",
+                border: "none",
+                background: "rgba(9, 87, 177, 0.1)",
+                cursor: "pointer",
+                fontSize: "16px",
+                fontWeight: 600,
+                color: "var(--primary)",
+              }}
+            >
+              <Globe size={20} />
+              {language === "en" ? "Switch to Tagalog" : "Switch to English"}
+            </button>
           </div>
         )}
       </nav>

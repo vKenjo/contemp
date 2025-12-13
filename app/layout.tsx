@@ -4,6 +4,7 @@ import "./globals.css";
 import Navigation from "./components/Navigation";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import { LanguageProvider } from "./lib/LanguageContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -33,10 +34,12 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased`}
       >
-        <ScrollToTop />
-        <Navigation />
-        <main>{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <ScrollToTop />
+          <Navigation />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );
