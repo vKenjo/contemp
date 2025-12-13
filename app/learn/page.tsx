@@ -1,55 +1,21 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Accordion from "../components/Accordion";
 import { Eye, Shield, Search, AlertTriangle, CheckCircle, Lock, PlayCircle, Clock, Award } from "lucide-react";
+import { courses } from "../lib/courseData";
 
 export default function LearnPage() {
   const [completedCourses, setCompletedCourses] = useState<number[]>([]);
 
-  const courses = [
-    {
-      id: 1,
-      title: "Introduction to AI-Generated Images",
-      duration: "15 minutes",
-      description: "Learn what AI-generated images are and why you should care about them.",
-      thumbnail: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
-      lessons: 4,
-    },
-    {
-      id: 2,
-      title: "Spotting Fake Photos: Hands and Faces",
-      duration: "20 minutes",
-      description: "Discover the telltale signs in hands and facial features that reveal AI-generated content.",
-      thumbnail: "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=800&q=80",
-      lessons: 5,
-    },
-    {
-      id: 3,
-      title: "Text and Background Clues",
-      duration: "18 minutes",
-      description: "Learn to identify strange text and unnatural backgrounds in AI images.",
-      thumbnail: "https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=800&q=80",
-      lessons: 4,
-    },
-    {
-      id: 4,
-      title: "Deepfakes and AI Videos",
-      duration: "25 minutes",
-      description: "Understand how to spot AI-generated videos and protect yourself from deepfake scams.",
-      thumbnail: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?w=800&q=80",
-      lessons: 6,
-    },
-    {
-      id: 5,
-      title: "Protecting Yourself from AI Scams",
-      duration: "22 minutes",
-      description: "Practical steps to verify images and avoid falling for AI-generated scams.",
-      thumbnail: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80",
-      lessons: 5,
-    },
-  ];
+  // Load completed courses from localStorage
+  useEffect(() => {
+    const saved = localStorage.getItem("completedCourses");
+    if (saved) {
+      setCompletedCourses(JSON.parse(saved));
+    }
+  }, []);
 
   const totalCourses = courses.length;
   const progressPercentage = (completedCourses.length / totalCourses) * 100;
@@ -185,19 +151,18 @@ export default function LearnPage() {
               const isCompleted = completedCourses.includes(course.id);
 
               return (
-                <div
+                <Link
                   key={course.id}
+                  href={`/courses/${course.slug}`}
                   className="glass-card"
                   style={{
                     padding: "0",
                     overflow: "hidden",
                     cursor: "pointer",
                     opacity: isCompleted ? 0.8 : 1,
-                  }}
-                  onClick={() => {
-                    if (!isCompleted) {
-                      setCompletedCourses([...completedCourses, course.id]);
-                    }
+                    textDecoration: "none",
+                    color: "inherit",
+                    display: "block",
                   }}
                 >
                   {/* Course Thumbnail */}
@@ -255,7 +220,7 @@ export default function LearnPage() {
                   <div style={{ padding: "24px" }}>
                     <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "12px" }}>
                       <div className="badge badge-blue">
-                        {course.lessons} Lessons
+                        {course.lessons.length} Lessons
                       </div>
                       <div style={{ display: "flex", alignItems: "center", gap: "6px", color: "var(--gray-500)", fontSize: "15px" }}>
                         <Clock size={16} />
@@ -270,7 +235,7 @@ export default function LearnPage() {
                       {course.description}
                     </p>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -489,7 +454,7 @@ export default function LearnPage() {
               flexWrap: "wrap",
             }}
           >
-            <Link href="#courses" className="btn-primary" style={{ background: "white", color: "var(--primary)" }}>
+            <Link href="/courses/intro-to-ai-images" className="btn-primary" style={{ background: "white", color: "var(--primary)" }}>
               Start First Course
             </Link>
             <Link href="/community" className="btn-secondary" style={{ background: "transparent", border: "2px solid white", color: "white" }}>
