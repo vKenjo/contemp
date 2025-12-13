@@ -1,3 +1,5 @@
+"use client";
+
 import Quiz from "../components/Quiz";
 import Link from "next/link";
 
