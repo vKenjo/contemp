@@ -1,4 +1,4 @@
-# WiseGuard AI 🛡️
+# AuthentiKa🛡️
 
 > **Empowering Seniors to Navigate AI with Confidence**
 
