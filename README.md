@@ -60,28 +60,6 @@ A mobile-first web application designed to help elderly community members unders
 - Team information
 - Journey timeline
 
----
-
-## 🎨 Design Philosophy
-
-The application follows **Apple's minimalist design language** combined with **Notion's clean aesthetics**:
-
-- Clean, spacious layouts
-- Large, readable typography for accessibility
-- Soft shadows and subtle gradients
-- Clear visual hierarchy
-- High contrast for readability
-- Mobile-first responsive design
-
-### Color Palette
-
-- **Primary:** #007AFF (Apple Blue)
-- **Secondary:** #5856D6 (Purple)
-- **Success:** #34C759 (Green)
-- **Warning:** #FF9500 (Orange)
-- **Danger:** #FF3B30 (Red)
-
----
 
 ## 🚀 Getting Started
 
